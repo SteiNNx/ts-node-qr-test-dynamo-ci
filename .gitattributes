@@ -1,0 +1,22 @@
+# Asegura un manejo consistente de los archivos de texto con finales de línea LF en el repositorio
+* text=auto eol=lf
+
+# Archivos específicos de Docker (asegura que los finales de línea se mantengan como están, ya que son binarios)
+.dockerignore binary
+Dockerfile binary
+docker-compose.yml binary
+
+# Archivos de configuración (asegura que los archivos YAML y JSON se manejen como texto con finales de línea LF)
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+
+# Archivos de código (asegura que los archivos TypeScript y JavaScript se manejen como texto con finales de línea LF)
+*.ts text eol=lf
+*.js text eol=lf
+
+# Archivos Markdown (asegura que los archivos Markdown se manejen como texto con finales de línea LF)
+*.md text eol=lf
+
+# Scripts Bash (asegura que los scripts Bash tengan finales de línea LF)
+*.sh text eol=lf

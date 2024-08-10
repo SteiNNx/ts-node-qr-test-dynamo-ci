@@ -1,0 +1,23 @@
+### Test QR Code Generation
+
+# Test Case 1: api/qr/generate QR Code with valid data
+POST http://localhost:3000/api/qr/generate
+Content-Type: application/json
+
+{
+  "data": "https://example.com"
+}
+
+### Test Case 2: api/qr/generate QR Code with missing data
+POST http://localhost:3000/api/qr/generate
+Content-Type: application/json
+
+{}
+
+### Test Case 3: api/qr/generate QR Code with empty data
+POST http://localhost:3000/api/qr/generate
+Content-Type: application/json
+
+{
+  "data": ""
+}

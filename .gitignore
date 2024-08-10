@@ -1,0 +1,58 @@
+# Node.js dependencies
+node_modules/
+
+#
+*.TODO
+
+# Compiled output
+dist/
+build/
+
+# TypeScript output
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+pids/
+*.pid
+
+# IDEs and editors
+.idea/
+*.swp
+*.swo
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Jest coverage
+coverage/
+
+# CI/CD related files
+*.lock
+.npmrc
+.yarnrc
+package-lock.json
+yarn.lock
+
+# TypeScript
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# Others
+*.tgz
+*.gz
+*.zip
+*.rar
+
+# Build artifacts
+*.log
+*.pid
+*.seed
+*.tmp
+
+# Testing artifacts
+*.test.js
+*.test.ts
+jest-test-results.json
