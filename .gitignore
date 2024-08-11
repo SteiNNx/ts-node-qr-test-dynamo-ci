@@ -51,8 +51,3 @@ tsconfig.tsbuildinfo
 *.pid
 *.seed
 *.tmp
-
-# Testing artifacts
-*.test.js
-*.test.ts
-jest-test-results.json

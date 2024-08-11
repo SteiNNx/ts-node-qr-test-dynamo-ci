@@ -1,8 +1,9 @@
 // src/routes/qr.routes.ts
 import { Router } from 'express';
-import QRController from '../controllers/qr.controller';
+import QRController from '@controllers/qr.controller';
 
 const router = Router();
+
 const qrController = new QRController();
 
 router.post('/generate', qrController.generateQRCodeHandler);

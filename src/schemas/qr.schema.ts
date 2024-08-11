@@ -1,4 +1,4 @@
-// src/models/qr.model.ts
+// src/schemas/qr.schema.ts
 import { z } from 'zod';
 
 export const qrSchema = z.object({

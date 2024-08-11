@@ -1,5 +1,8 @@
 import pino from 'pino';
-import { APP_LOG_LEVEL } from '../constants/app.constants';
+import {
+    APP_NAME,
+    APP_LOG_LEVEL,
+} from '@constants/app.constants';
 
 /**
  * Configuración y creación del logger Pino.
@@ -19,6 +22,8 @@ const logLevel = APP_LOG_LEVEL || 'info';
 // El logger usa el transporte 'pino-pretty' para formatear los logs de manera legible en la consola.
 const logger = pino({
     level: logLevel,
+    name: `${APP_NAME}`,
+    timestamp: pino.stdTimeFunctions.isoTime,
     transport: {
         target: 'pino-pretty',
         options: {

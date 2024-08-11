@@ -1,0 +1,43 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "paths": {
+            "@app": [
+                "app"
+            ],
+            "@server": [
+                "server"
+            ],
+            "@constants/*": [
+                "constants/*"
+            ],
+            "@controllers/*": [
+                "controllers/*"
+            ],
+            "@exceptions/*": [
+                "exceptions/*"
+            ],
+            "@libs/*": [
+                "libs/*"
+            ],
+            "@middlewares/*": [
+                "middlewares/*"
+            ],
+            "@repositories/*": [
+                "repositories/*"
+            ],
+            "@routes/*": [
+                "routes/*"
+            ],
+            "@schemas/*": [
+                "schemas/*"
+            ],
+            "@services/*": [
+                "services/*"
+            ]
+        }
+    },
+    "include": [
+        "src/**/*"
+    ]
+}

@@ -1,14 +1,30 @@
 import { Request, Response } from 'express';
-import QRService from '../services/qr.service';
-import logger from '../libs/logger';  // Importa el logger
+import QRService from '@services/qr.service';
+import logger from '@libs/logger';
+import { HTTP_STATUS_CODE } from '@constants/app.constants';
 
+/**
+ * Controlador para gestionar las operaciones relacionadas con códigos QR.
+ */
 class QRController {
   private qrService: QRService;
 
+  /**
+   * Constructor de la clase QRController.
+   * Inicializa una instancia del servicio QRService.
+   */
   constructor() {
-    this.qrService = new QRService(); // Instanciación interna de la dependencia
+    this.qrService = new QRService();
   }
 
+  /**
+   * Handler para generar un código QR a partir de los datos proporcionados.
+   * 
+   * @param {Request} req - El objeto de solicitud de Express, que contiene los datos necesarios para generar el QR.
+   * @param {Response} res - El objeto de respuesta de Express, que se utiliza para enviar el código QR generado o un error.
+   * 
+   * @returns {Promise<void>} - Retorna una promesa que se resuelve cuando la operación está completa.
+   */
   public generateQRCodeHandler = async (req: Request, res: Response): Promise<void> => {
     logger.info('Invocación a generateQRCodeHandler con datos:', req.body);
 
@@ -16,14 +32,20 @@ class QRController {
       const { data } = req.body;
       logger.info('Datos recibidos para generar QR:', { data });
 
+      // Llama al servicio para generar el código QR
       const qrCode = await this.qrService.generateQRCode(data);
       logger.info('Código QR generado exitosamente:', { qrCode });
 
-      res.status(200).json({ qrCode });
+      // Envía el código QR generado como respuesta
+      res.status(HTTP_STATUS_CODE.OK)
+        .json({ qrCode });
     } catch (error: any) {
+      // Loguea el error si ocurre alguno durante la generación del código QR
       logger.error('Error en generateQRCodeHandler:', { error: error.message });
 
-      res.status(500).json({ error: error.message });
+      // Envía una respuesta de error al cliente
+      res.status(HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR)
+        .json({ error: error.message });
     }
   };
 }
