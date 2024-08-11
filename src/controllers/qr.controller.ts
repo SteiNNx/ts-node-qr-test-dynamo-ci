@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import QRService from '@services/qr.service';
 import logger from '@libs/logger';
 import { HTTP_STATUS_CODE } from '@constants/app.constants';
@@ -25,7 +25,7 @@ class QRController {
    * 
    * @returns {Promise<void>} - Retorna una promesa que se resuelve cuando la operación está completa.
    */
-  public generateQRCodeHandler = async (req: Request, res: Response): Promise<void> => {
+  public generateQRCodeHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     logger.info('Invocación a generateQRCodeHandler con datos:', req.body);
 
     try {
@@ -40,12 +40,7 @@ class QRController {
       res.status(HTTP_STATUS_CODE.OK)
         .json({ qrCode });
     } catch (error: any) {
-      // Loguea el error si ocurre alguno durante la generación del código QR
-      logger.error('Error en generateQRCodeHandler:', { error: error.message });
-
-      // Envía una respuesta de error al cliente
-      res.status(HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR)
-        .json({ error: error.message });
+      next(error);
     }
   };
 }

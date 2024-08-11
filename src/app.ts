@@ -1,7 +1,9 @@
 import express, { Application } from 'express';
 import helmet from 'helmet';
+
 import qrRoutes from '@routes/qr.routes';
 import { errorHandlerMiddleware } from '@middlewares/error-handler.middleware';
+import { errorNotFoundMiddleware } from '@middlewares/error-not-found.middleware';
 import logger from '@libs/logger';
 
 class App {
@@ -37,6 +39,7 @@ class App {
   private errorHandling(): void {
     logger.info('Registrando middleware para manejo de errores...');
     this.app.use(errorHandlerMiddleware);
+    this.app.use(errorNotFoundMiddleware)
     logger.info('Middleware de manejo de errores registrado.');
   }
 }

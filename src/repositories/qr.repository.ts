@@ -1,6 +1,6 @@
 import { PutItemCommand } from '@aws-sdk/client-dynamodb';
 import dynamoClient from '@libs/dynamo-client';
-import { qrSchema } from '@schemas/qr.schema';
+import { DBError } from '@exceptions/app-errors.exception';
 import logger from '@libs/logger';
 
 class QRRepository {
@@ -10,16 +10,12 @@ class QRRepository {
    * @param {string} data - The data encoded in the QR code.
    * @param {string} qrCode - The generated QR code in Data URL format.
    * @returns {Promise<void>} - A promise that resolves when the QR code has been successfully saved.
-   * @throws {Error} - Throws an error if the QR code cannot be saved to the database.
+   * @throws {DBError} - Throws an error if the QR code cannot be saved to the database.
    */
   public async saveQRCodeToDB(data: string, qrCode: string): Promise<void> {
     logger.info('Successful invocation of saveQRCodeToDB with data:', { data, qrCode });
 
     try {
-      // Input validation
-      qrSchema.parse({ data });
-      logger.info('Data validation successful');
-
       // Get the current date and time in ISO format
       const insertionDate = new Date().toISOString();
 
@@ -37,8 +33,9 @@ class QRRepository {
 
       logger.info('QR code successfully saved to DynamoDB:', { data, qrCode, insertionDate });
     } catch (error: any) {
-      logger.error('Error saving QR code to DynamoDB:', { error: error.message });
-      throw new Error(`Error saving QR code to DB: ${error.message}`);
+      logger.error('Database error in saveQRCodeToDB:', { error: error.message });
+
+      throw new DBError();
     }
   }
 }

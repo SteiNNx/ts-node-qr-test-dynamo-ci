@@ -14,6 +14,22 @@ export const DYNAMODB_DATABASE_ENDPOINT = process.env.DYNAMODB_DATABASE_ENDPOINT
 export const DYNAMO_TABLE_NAME = process.env.DYNAMO_TABLE_NAME || 'qr-codes';
 export const QR_APP_PORT = process.env.QR_APP_PORT ? parseInt(process.env.QR_APP_PORT) : 3000;
 
+export const ERROR_MESSAGES = {
+    NOT_FOUND: 'Recurso no encontrado',
+    BUSINESS: 'Error de negocio',
+    VALIDATION: 'Error de validación',
+    DB: 'Error de base de datos',
+    SERVICE: 'Error en el servicio',
+};
+
+export const CLIENT_MESSAGES = {
+    NOT_FOUND: 'El recurso solicitado no está disponible.',
+    BUSINESS: 'Ocurrió un error relacionado con las reglas del negocio.',
+    VALIDATION: 'Los datos proporcionados no son válidos.',
+    DB: 'Ocurrió un error al acceder a la base de datos.',
+    SERVICE: 'El servicio no está disponible en este momento.',
+};
+
 // Códigos de estado HTTP
 export const HTTP_STATUS_CODE = {
     // Successful 2xx

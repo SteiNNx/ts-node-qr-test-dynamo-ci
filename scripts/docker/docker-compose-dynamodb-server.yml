@@ -43,6 +43,11 @@ services:
 
 volumes:
   dynamodb_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../../data/dynamodb
 
 networks:
   dynamodb_network:
