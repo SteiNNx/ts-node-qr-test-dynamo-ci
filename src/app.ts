@@ -4,7 +4,7 @@ import helmet from 'helmet';
 import qrRoutes from '@routes/qr.routes';
 import { errorHandlerMiddleware } from '@middlewares/error-handler.middleware';
 import { errorNotFoundMiddleware } from '@middlewares/error-not-found.middleware';
-import logger from '@libs/logger';
+import logger from '@libs/logger.lib';
 
 class App {
   public app: Application;

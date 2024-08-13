@@ -1,36 +1,54 @@
 {
   "compilerOptions": {
+    // Define la versión de ECMAScript para la compilación de salida.
     "target": "ES2020",
+    
+    // Especifica el sistema de módulos para la salida de compilación.
     "module": "commonjs",
+    
+    // Directorio donde se colocarán los archivos compilados.
     "outDir": "./dist",
+    
+    // Directorio raíz de los archivos fuente.
     "rootDir": "./src",
+    
+    // Habilita todas las verificaciones estrictas de tipos.
     "strict": true,
+    
+    // Habilita la interoperabilidad con módulos ES6 que utilizan exportaciones por defecto.
     "esModuleInterop": true,
+    
+    // Omite la verificación de tipos en los archivos de declaración de bibliotecas.
     "skipLibCheck": true,
+    
+    // Enforce consistent casing in imports (previene problemas entre sistemas de archivos con diferentes sensibilidades de mayúsculas).
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "./src",
+    
+    // Establece la base para resolver rutas relativas de los módulos.
+    "baseUrl": "./",
+    
+    // Define alias para facilitar las importaciones.
     "paths": {
-      "@app": ["app"],
-      "@server": ["server"],
-      "@constants/*": ["constants/*"],
-      "@controllers/*": ["controllers/*"],
-      "@exceptions/*": ["exceptions/*"],
-      "@libs/*": ["libs/*"],
-      "@middlewares/*": ["middlewares/*"],
-      "@repositories/*": ["repositories/*"],
-      "@routes/*": ["routes/*"],
-      "@schemas/*": ["schemas/*"],
-      "@services/*": ["services/*"]
-    },
-    "plugins": [
-      {
-        "transform": "./transpile.js"
-      }
-    ]
+      "@app": ["src/app"],
+      "@server": ["src/server"],
+      "@constants/*": ["src/constants/*"],
+      "@controllers/*": ["src/controllers/*"],
+      "@exceptions/*": ["src/exceptions/*"],
+      "@libs/*": ["src/libs/*"],
+      "@middlewares/*": ["src/middlewares/*"],
+      "@repositories/*": ["src/repositories/*"],
+      "@routes/*": ["src/routes/*"],
+      "@schemas/*": ["src/schemas/*"],
+      "@services/*": ["src/services/*"]
+    }
   },
+  
+  // Define los archivos y carpetas que TypeScript debe incluir en la compilación.
   "include": [
     "src/**/*"
   ],
+  
+  // Excluye directorios y archivos específicos de la compilación.
   "exclude": [
     "node_modules",
     "dist",

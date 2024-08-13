@@ -1,23 +1,30 @@
 import type { Config } from 'jest';
 
 const config: Config = {
-  // Usa ts-jest para transformar archivos TypeScript antes de ejecutarlos en Jest
+  // Utiliza ts-jest para transformar archivos TypeScript antes de ejecutarlos en Jest
   transform: {
     '^.+\\.ts$': 'ts-jest',
   },
-  // Especifica el entorno de prueba para Node.js
+  
+  // Define el entorno de prueba como Node.js
   testEnvironment: 'node',
-  // Define el patrón de coincidencia para encontrar los archivos de prueba
+  
+  // Patrón para encontrar los archivos de prueba (todos los archivos .test.ts)
   testMatch: ['**/*.test.ts'],
+  
   // Extensiones de archivo que Jest debe manejar
   moduleFileExtensions: ['ts', 'js', 'json', 'node'],
+  
   // Directorio donde se generará el informe de cobertura
   coverageDirectory: 'coverage',
+  
   // Habilita la recopilación de cobertura de código
   collectCoverage: true,
-  // Define los reporteros de cobertura (en formato JSON y HTML)
+  
+  // Define los reporteros de cobertura (genera informes en formato JSON y HTML)
   coverageReporters: ['json', 'html'],
-  // Configura los alias para Jest que coinciden con los definidos en tsconfig.json
+  
+  // Configura los alias de módulos para Jest, coincidiendo con los definidos en tsconfig.json
   moduleNameMapper: {
     '^@app$': '<rootDir>/src/app.ts',
     '^@server$': '<rootDir>/src/server.ts',

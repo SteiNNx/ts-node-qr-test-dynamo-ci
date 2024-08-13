@@ -1,11 +1,4 @@
-// src/exceptions/Errors.ts
-
-import {
-    CLIENT_MESSAGES,
-    ERROR_MESSAGES,
-    HTTP_STATUS_CODE,
-} from "@constants/app.constants";
-
+import { CLIENT_MESSAGES, ERROR_MESSAGES, HTTP_STATUS_CODE } from '@constants/app.constants';
 
 // Clase base para todos los errores personalizados
 export class AppError extends Error {

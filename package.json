@@ -10,7 +10,7 @@
         "build": "tsc && tsc-alias",
         "start": "node dist/server.js",
         "dev": "ts-node src/server.ts",
-        "test": "jest --coverage",
+        "test": "jest --coverage --report",
         "lint": "eslint --fix"
     },
     "dependencies": {
