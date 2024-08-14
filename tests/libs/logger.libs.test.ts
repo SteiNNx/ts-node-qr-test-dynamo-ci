@@ -5,6 +5,7 @@ jest.mock('pino');
 
 describe('logger', () => {
     it('should create a logger instance with correct configuration', () => {
+        // No llames logger como función si no lo es.
         expect(pino).toHaveBeenCalledWith(expect.objectContaining({
             level: expect.any(String),
             name: expect.any(String),

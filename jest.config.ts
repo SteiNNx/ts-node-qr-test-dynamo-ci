@@ -21,9 +21,9 @@ const config: Config = {
   // Habilita la recopilación de cobertura de código
   collectCoverage: true,
   
-  // Define los reporteros de cobertura (genera informes en formato JSON y HTML)
-  coverageReporters: ['json', 'html'],
-  
+  // Define los reporteros de cobertura (genera informes en formato JSON, HTML, y texto para consola)
+  coverageReporters: ['json', 'html', 'text-summary'],
+
   // Configura los alias de módulos para Jest, coincidiendo con los definidos en tsconfig.json
   moduleNameMapper: {
     '^@app$': '<rootDir>/src/app.ts',

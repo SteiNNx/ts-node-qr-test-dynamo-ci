@@ -11,7 +11,7 @@ class QRService {
         this.qrRepository = new QRRepository();
     }
 
-    public async generateQRCode(data: string): Promise<string> {
+    public async generateQRCode(data: string): Promise<Record<string, any>> {
         logger.info('Invocación exitosa a generateQRCode con datos:', { data });
 
         try {
@@ -24,10 +24,10 @@ class QRService {
             const qrCode = await toDataURL(data);
             logger.info('Código QR generado exitosamente:', { qrCode });
 
-            await this.qrRepository.saveQRCodeToDB(data, qrCode);
+            const qrCodeEntity = await this.qrRepository.saveQRCodeToDB(data, qrCode);
             logger.info('Código QR guardado exitosamente en la base de datos:', { data, qrCode });
 
-            return qrCode;
+            return qrCodeEntity;
         } catch (error: any) {
             logger.error('Error generando el código QR:', { error: error.message });
             throw error;

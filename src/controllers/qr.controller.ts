@@ -23,10 +23,10 @@ class QRController {
       const { data } = req.body;
       logger.info('Datos recibidos para generar QR:', { data });
 
-      const qrCode = await this.qrService.generateQRCode(data);
-      logger.info('Código QR generado exitosamente:', { qrCode });
+      const qrCodeEntity = await this.qrService.generateQRCode(data);
+      logger.info('Código QR generado exitosamente:', { qrCodeEntity });
 
-      res.status(HTTP_STATUS_CODE.OK).json({ qrCode });
+      res.status(HTTP_STATUS_CODE.OK).json( qrCodeEntity );
     } catch (error: any) {
       logger.error('Error en generateQRCodeHandler:', { error: error.message });
       next(error);

@@ -5,9 +5,7 @@ import { ValidationError } from '@exceptions/app-errors.exception';
 import logger from '@libs/logger.lib';
 
 jest.mock('@repositories/qr.repository');
-jest.mock('qrcode', () => ({
-    toDataURL: jest.fn()
-}));
+jest.mock('qrcode', () => ({ toDataURL: jest.fn() }));
 jest.mock('@libs/logger.lib', () => ({
     info: jest.fn(),
     error: jest.fn(),
@@ -25,11 +23,13 @@ describe('QRService', () => {
     it('should generate a QR code and save it to the database', async () => {
         const qrCode = 'sampleQRCode';
         (toDataURL as jest.Mock).mockResolvedValue(qrCode);
+        qrRepositoryMock.prototype.saveQRCodeToDB.mockResolvedValue({ qrCode });
 
-        await qrService.generateQRCode('sampleData');
+        const result = await qrService.generateQRCode('sampleData');
 
         expect(toDataURL).toHaveBeenCalledWith('sampleData');
         expect(qrRepositoryMock.prototype.saveQRCodeToDB).toHaveBeenCalledWith('sampleData', qrCode);
+        expect(result).toEqual({ qrCode });
         expect(logger.info).toHaveBeenCalledWith('Código QR generado exitosamente:', { qrCode });
     });
 

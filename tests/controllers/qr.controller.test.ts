@@ -19,26 +19,20 @@ describe('QRController', () => {
 
     beforeEach(() => {
         qrController = new QRController();
-        req = {
-            body: {
-                data: 'sampleData'
-            }
-        };
-        res = {
-            status: jest.fn().mockReturnThis(),
-            json: jest.fn()
-        };
+        req = { body: { data: 'sampleData' } };
+        res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
         next = jest.fn();
     });
 
     it('should generate a QR code and return it', async () => {
-        const qrCode = 'sampleQRCode';
-        qrServiceMock.prototype.generateQRCode.mockResolvedValue(qrCode);
+        const qrCodeEntity = { qrCode: 'sampleQRCode' };
+        qrServiceMock.prototype.generateQRCode.mockResolvedValue(qrCodeEntity);
 
         await qrController.generateQRCodeHandler(req as Request, res as Response, next);
 
         expect(res.status).toHaveBeenCalledWith(HTTP_STATUS_CODE.OK);
-        expect(res.json).toHaveBeenCalledWith({ qrCode });
+        expect(res.json).toHaveBeenCalledWith(qrCodeEntity);
+        expect(qrServiceMock.prototype.generateQRCode).toHaveBeenCalledWith('sampleData');
     });
 
     it('should handle errors and pass them to the next middleware', async () => {

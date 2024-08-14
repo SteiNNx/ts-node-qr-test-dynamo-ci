@@ -5,6 +5,7 @@ jest.mock('@aws-sdk/client-dynamodb');
 
 describe('dynamoClient', () => {
     it('should create an instance of DynamoDBClient with correct configuration', () => {
+        // Si dynamoClient es una instancia, no lo llames como función.
         expect(DynamoDBClient).toHaveBeenCalledWith({
             region: expect.any(String),
             credentials: {
@@ -20,6 +21,10 @@ describe('dynamoClient', () => {
         process.env.AWS_SECRET_ACCESS_KEY = undefined;
         process.env.AWS_REGION = undefined;
 
-        expect(() => require('@libs/dynamo-client.lib')).toThrow('AWS credentials and region must be defined in environment variables or configuration.');
+        expect(() => {
+            // Si dynamoClient es una instancia, simplemente importa el módulo
+            // en lugar de llamarlo como función.
+            require('@libs/dynamo-client.lib');
+        }).toThrow('AWS credentials and region must be defined in environment variables or configuration.');
     });
 });
